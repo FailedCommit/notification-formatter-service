@@ -33,11 +33,16 @@ public class NotificationFormatterService {
         if ("EMAIL".equals(request.getNotificationMode())) {
             Context context = new Context();
             context.setVariables(notificationParametersMap);
-            File emailTemplateFile = new File("./src/main/resources/templates/email/" + request.getNotificationTemplateName() + ".html");
+            File emailTemplateFile = new File("./src/main/resources/templates/" + request.getNotificationTemplateName() + ".html");
             NotificationTemplateResponse response = new NotificationTemplateResponse();
             if (emailTemplateFile.exists()) {
-                notificationContent = templateEngine.process("./templates/email/" + request.getNotificationTemplateName() + ".html", context);
+                notificationContent = templateEngine.process("/PhoneNumberChanged.html", context);
                 notificationTemplateResponse.setEmailContent(notificationContent);
+                if("ViewBalance".equalsIgnoreCase(emailTemplateFile.getName())) {
+                    notificationTemplateResponse.setEmailSubject("Your Bank Balance");
+                } else if("PhoneNumberChanged".equalsIgnoreCase(emailTemplateFile.getName())) {
+                    notificationTemplateResponse.setEmailSubject("Your Phone Number Changed");
+                }
             }
         }
 

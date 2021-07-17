@@ -20,11 +20,10 @@ public class ThymeleafConfiguration {
 
     @Bean
     public SpringResourceTemplateResolver thymeleafTemplateResolver() {
-        SpringResourceTemplateResolver templateResolver
-                = new SpringResourceTemplateResolver();
-//        templateResolver.setPrefix("/WEB-INF/views/");
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setCacheable(false);
+        templateResolver.setPrefix("classpath:/templates/");
         templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML");
         return templateResolver;
     }
 
