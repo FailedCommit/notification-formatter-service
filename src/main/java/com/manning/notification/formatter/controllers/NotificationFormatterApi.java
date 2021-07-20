@@ -26,4 +26,9 @@ public class NotificationFormatterApi {
         response.setStatusDescription("Successfully merged the template with the template parameters");
         return response;
     }
+
+    @GetMapping("/healthcheck")
+    public String healthCheck (){
+        return "UP";
+    }
 }
